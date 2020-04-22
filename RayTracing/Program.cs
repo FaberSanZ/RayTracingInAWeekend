@@ -48,8 +48,6 @@ namespace RayTracing
             };
 
 
-
-
             int width = 1200;
             int height = 600;
             string filename = "Render.png";
@@ -67,8 +65,7 @@ namespace RayTracing
 
                     Ray r = new Ray(origin, lowerLeftCorner + u * horizontal + v * vertical);
                     Vector3 col = Color(r, world);
-                    //var col = Vector3.Negate(col2);
-                    //int index = (i + (j * width)) * 3;
+
                     int index = i + (j * width);
                     pixels[index].R = (byte)(255.99 * col.X);
                     pixels[index].G = (byte)(255.99 * col.Y);
@@ -77,7 +74,6 @@ namespace RayTracing
 
                 }
             }
-
 
 
             for (int x = 0; x < image.Width; x++)
@@ -90,14 +86,10 @@ namespace RayTracing
             }
 
 
-
-
-
             image.Save(filename); // .png
 
-
-
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filename);
+
             ProcessStartInfo start_info = new ProcessStartInfo
             {
                 FileName = path,
