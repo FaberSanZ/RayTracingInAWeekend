@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace RayTracingInAWeekend
+namespace RayTracing
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct HitRecord
@@ -12,17 +12,18 @@ namespace RayTracingInAWeekend
         public Vector3 Position;
         public float T;
         public Vector3 Normal;
+        public Material Material;
 
         public static HitRecord Empty
         {
             get
             {
-                return new HitRecord()
-                {
-                    T = 0,
-                    Position = Vector3.Zero,
-                    Normal = Vector3.Zero,
-                };
+                HitRecord rec;
+                rec.T = 0;
+                rec.Position = Vector3.Zero;
+                rec.Normal = Vector3.Zero;
+                rec.Material = null;
+                return rec;
             }
         }
     }

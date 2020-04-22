@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RayTracingInAWeekend
+namespace RayTracing
 {
     public struct Scene
     {

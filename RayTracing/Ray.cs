@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Numerics;
 
-namespace RayTracingInAWeekend
+namespace RayTracing
 {
     [StructLayout(LayoutKind.Explicit, Size = 32)]
     public struct Ray
