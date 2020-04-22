@@ -1,4 +1,13 @@
-﻿using System;
+﻿// Copyright (c) 2019-2020 Faber Leonardo. All Rights Reserved.
+
+/*=============================================================================
+	Dielectric.cs
+=============================================================================*/
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;

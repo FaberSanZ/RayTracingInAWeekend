@@ -1,8 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2019-2020 Faber Leonardo. All Rights Reserved.
+
+/*=============================================================================
+	Sphere.cs
+=============================================================================*/
+
+
+
+
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace RayTracing
 {
@@ -11,13 +18,13 @@ namespace RayTracing
     {
         public Vector3 Center;
         public float Radius;
-        public Material material;
+        public Material Material;
 
         public Sphere(Vector3 center, float radius, Material material)
         {
-            this.Center = center;
-            this.Radius = radius;
-            this.material = material;
+            Center = center;
+            Radius = radius;
+            Material = material;
         }
 
         public bool Hit(Ray r, float tMin, float tMax, out HitRecord rec)
@@ -36,17 +43,17 @@ namespace RayTracing
                     rec.T = temp;
                     rec.Position = r.PointAtParameter(rec.T);
                     rec.Normal = (rec.Position - Center) / Radius;
-                    rec.Material = material;
+                    rec.Material = Material;
                     return true;
                 }
 
                 temp = (-b + MathF.Sqrt(b * b - a * c)) / a;
-                if(temp < tMax && temp > tMin)
+                if (temp < tMax && temp > tMin)
                 {
                     rec.T = temp;
                     rec.Position = r.PointAtParameter(rec.T);
                     rec.Normal = (rec.Position - Center) / Radius;
-                    rec.Material = material;
+                    rec.Material = Material;
                     return true;
                 }
             }

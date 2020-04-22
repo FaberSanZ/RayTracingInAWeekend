@@ -1,15 +1,15 @@
-﻿using System;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Reflection;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
 
 namespace RayTracing
 {
-    class Program
+    internal class Program
     {
         public struct PixelRGB
         {
@@ -27,14 +27,14 @@ namespace RayTracing
             float u = rand.NextFloat();
             float v = rand.NextFloat();
 
-            var phi = MathF.Acos((2f * v) - 1f);
-            var theta = 2 * MathF.PI * u;
+            float phi = MathF.Acos((2f * v) - 1f);
+            float theta = 2 * MathF.PI * u;
 
-            var x = r * MathF.Cos(theta) * MathF.Sin(phi);
-            var y = r * MathF.Sin(theta) * MathF.Sin(phi);
-            var z = r * MathF.Cos(phi);
+            float x = r * MathF.Cos(theta) * MathF.Sin(phi);
+            float y = r * MathF.Sin(theta) * MathF.Sin(phi);
+            float z = r * MathF.Cos(phi);
 
-            Vector3 res = new Vector3((float)x, (float)y, (float)z);
+            Vector3 res = new Vector3(x, y, z);
             return res;
 
         }
@@ -45,7 +45,8 @@ namespace RayTracing
             do
             {
                 p = 2f * new Vector3(rand.NextFloat(), rand.NextFloat(), rand.NextFloat()) - Vector3.One;
-            } while (p.LengthSquared() >= 1.0f);
+            } 
+            while (p.LengthSquared() >= 1.0f);
 
             return p;
         }
@@ -71,7 +72,7 @@ namespace RayTracing
             }
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("       --Ray Tracing--");
 
@@ -81,11 +82,13 @@ namespace RayTracing
             //Vector3 origin = Vector3.Zero;
 
 
-            List<Sphere> spheres = new List<Sphere>();
-            spheres.Add(new Sphere(new Vector3(0, -1000, 0), 1000, new Lambertian(new Vector3(0.5f, 0.5f, 0.5f))));
+            List<Sphere> spheres = new List<Sphere>
+            {
+                new Sphere(new Vector3(0, -1000, 0), 1000, new Lambertian(new Vector3(0.5f, 0.5f, 0.5f)))
+            };
 
             int width = 1200;
-            int height = 600; 
+            int height = 600;
             int nSamples = 12;
             string filename = "Render.png";
             PixelRGB[] pixels = new PixelRGB[width * height];
@@ -135,13 +138,13 @@ namespace RayTracing
                     Vector3 col = Vector3.Zero;
                     for (int s = 0; s < nSamples; s++)
                     {
-                        float u = (float)(i + rand.NextFloat()) / (float)width;
-                        float v = (float)(height - (j + rand.NextFloat())) / (float)height;
+                        float u = (i + rand.NextFloat()) / width;
+                        float v = (height - (j + rand.NextFloat())) / height;
 
                         Ray r = cam.GetRay(u, v);
                         col += Color(ref r, ref world, 0);
                     }
-                    col /= (float)nSamples;
+                    col /= nSamples;
 
                     // Gamma correction
                     col.X = MathF.Sqrt(col.X);

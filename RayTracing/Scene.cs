@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// Copyright (c) 2019-2020 Faber Leonardo. All Rights Reserved.
+
+/*=============================================================================
+	Scene.cs
+=============================================================================*/
 
 namespace RayTracing
 {
@@ -10,19 +12,18 @@ namespace RayTracing
 
         public Scene(Sphere[] spheres)
         {
-            this.Spheres = spheres;
+            Spheres = spheres;
         }
 
         public bool Hit(Ray r, float tMin, float tMax, out HitRecord rec)
         {
-            HitRecord tempRec;
             rec = HitRecord.Empty;
             bool hitAnything = false;
             float closestSoFar = tMax;
-            for (int i = 0; i < this.Spheres.Length; i++)
+            for (int i = 0; i < Spheres.Length; i++)
             {
-                var elem = this.Spheres[i];
-                if (elem.Hit(r, tMin, closestSoFar, out tempRec))
+                Sphere elem = Spheres[i];
+                if (elem.Hit(r, tMin, closestSoFar, out HitRecord tempRec))
                 {
                     hitAnything = true;
                     closestSoFar = tempRec.T;

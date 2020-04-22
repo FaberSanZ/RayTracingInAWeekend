@@ -1,4 +1,12 @@
-﻿using System;
+﻿// Copyright (c) 2019-2020 Faber Leonardo. All Rights Reserved.
+
+/*=============================================================================
+	HitRecord.cs
+=============================================================================*/
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -18,12 +26,13 @@ namespace RayTracing
         {
             get
             {
-                HitRecord rec;
-                rec.T = 0;
-                rec.Position = Vector3.Zero;
-                rec.Normal = Vector3.Zero;
-                rec.Material = null;
-                return rec;
+                return new HitRecord
+                {
+                    T = 0,
+                    Position = Vector3.Zero,
+                    Normal = Vector3.Zero,
+                    Material = null,
+                };
             }
         }
     }

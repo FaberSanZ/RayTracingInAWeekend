@@ -1,7 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2019-2020 Faber Leonardo. All Rights Reserved.
+
+/*=============================================================================
+	Material.cs
+=============================================================================*/
+
+
 using System.Numerics;
-using System.Text;
 
 namespace RayTracing
 {
