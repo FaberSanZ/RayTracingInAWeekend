@@ -8,6 +8,9 @@
 </h1>
 <hr>
 
+<h2 align="center">
+   <img src="https://github.com/Zeckoxe/RayTracingInAWeekend/blob/master/Screenshots/Render.png" width=420>
+</h2>
 
 <br>
 
