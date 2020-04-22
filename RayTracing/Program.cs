@@ -70,8 +70,6 @@ namespace RayTracing
                     pixels[index].R = (byte)(255.99 * col.X);
                     pixels[index].G = (byte)(255.99 * col.Y);
                     pixels[index].B = (byte)(255.99 * col.Z);
-
-
                 }
             }
 
